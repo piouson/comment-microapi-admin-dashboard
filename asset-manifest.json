@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/comment-microapi-admin-dashboard/static/js/main.79d51368.chunk.js",
+    "main.js.map": "/comment-microapi-admin-dashboard/static/js/main.79d51368.chunk.js.map",
+    "runtime-main.js": "/comment-microapi-admin-dashboard/static/js/runtime-main.40fe0b3d.js",
+    "runtime-main.js.map": "/comment-microapi-admin-dashboard/static/js/runtime-main.40fe0b3d.js.map",
+    "static/js/2.76b217c1.chunk.js": "/comment-microapi-admin-dashboard/static/js/2.76b217c1.chunk.js",
+    "static/js/2.76b217c1.chunk.js.map": "/comment-microapi-admin-dashboard/static/js/2.76b217c1.chunk.js.map",
+    "index.html": "/comment-microapi-admin-dashboard/index.html",
+    "precache-manifest.89a1331ef22d02acf761b27aff13dd6c.js": "/comment-microapi-admin-dashboard/precache-manifest.89a1331ef22d02acf761b27aff13dd6c.js",
+    "service-worker.js": "/comment-microapi-admin-dashboard/service-worker.js",
+    "static/js/2.76b217c1.chunk.js.LICENSE.txt": "/comment-microapi-admin-dashboard/static/js/2.76b217c1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.40fe0b3d.js",
+    "static/js/2.76b217c1.chunk.js",
+    "static/js/main.79d51368.chunk.js"
+  ]
+}
