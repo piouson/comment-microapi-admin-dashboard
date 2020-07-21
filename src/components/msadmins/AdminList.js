@@ -6,7 +6,7 @@ const AdminList = (props) => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   return (
-    <List label="Admins" {...props}>
+    <List label="Admins" title="Admins" {...props}>
       {isSmall ? (
         <SimpleList
           primaryText={(record) => record.title}
@@ -16,7 +16,7 @@ const AdminList = (props) => {
           }
         />
       ) : (
-        <Datagrid rowClick="show">
+        <Datagrid rowClick="show" isRowSelectable={(record) => false}>
           <TextField source="id" />
           <TextField source="fullname" />
           <EmailField source="email" />
