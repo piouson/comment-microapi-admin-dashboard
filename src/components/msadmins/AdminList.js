@@ -9,11 +9,9 @@ const AdminList = (props) => {
     <List label="Admins" title="Admins" {...props}>
       {isSmall ? (
         <SimpleList
-          primaryText={(record) => record.title}
-          secondaryText={(record) => `${record.views} views`}
-          tertiaryText={(record) =>
-            new Date(record.published_at).toLocaleDateString()
-          }
+          primaryText={(record) => record.fullname}
+          secondaryText={(record) => record.email}
+          tertiaryText={(record) => record.role}
         />
       ) : (
         <Datagrid rowClick="show" isRowSelectable={(record) => false}>
