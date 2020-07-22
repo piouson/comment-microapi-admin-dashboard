@@ -4,7 +4,6 @@ import Dashboard from "./components/dashboard/Dashboard";
 import services from "./services";
 import msadmins from "./components/msadmins";
 import settings from "./components/settings";
-//import dataprovider from "./services/data-providers";
 
 function App() {
   return (
