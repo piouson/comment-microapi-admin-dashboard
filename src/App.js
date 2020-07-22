@@ -1,18 +1,15 @@
 import React from "react";
 import { Admin, Resource } from "react-admin";
 import Dashboard from "./components/dashboard/Dashboard";
-import authProvider from "./services/authProvider";
-import adminProvider from "./services/adminProvider";
+import services from "./services";
 import msadmins from "./components/msadmins";
+import settings from "./components/settings";
 
 function App() {
   return (
-    <Admin
-      dashboard={Dashboard}
-      authProvider={authProvider}
-      dataProvider={adminProvider}
-    >
-      <Resource name="msadmins" {...msadmins} />
+    <Admin dashboard={Dashboard} {...services}>
+      <Resource name="Admins" {...msadmins} />
+      <Resource name="Settings" {...settings} />
     </Admin>
   );
 }
