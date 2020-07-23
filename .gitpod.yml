@@ -1,0 +1,12 @@
+tasks:
+  - init: npm install
+    prebuild: npm test && npm run test:e2e
+    command: npm start
+ports:
+  - port: 3000
+    onOpen: open-preview
+github:
+  prebuilds:
+    branches: true
+    pullRequestsFromForks: true
+    addComment: true
