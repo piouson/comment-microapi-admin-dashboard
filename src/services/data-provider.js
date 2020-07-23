@@ -22,31 +22,33 @@ const httpClient = (url, options = {}) => {
 export default {
   getList: (resource, params) => {
     const endpoint = endpoints(GET_LIST, resource, params);
-    return httpClient(endpoint.url).then(({ json }) => ({
-      data: endpoint.getData(json.data),
-      total: json.data.length,
-    }));
+    return httpClient(endpoint.url).then(({ json }) => {
+      return {
+        data: endpoint.getData(json.data.records),
+        total: json.data.records.length,
+      };
+    });
   },
 
   getOne: (resource, params) => {
     const endpoint = endpoints(GET_ONE, resource, params);
     return httpClient(endpoint.url).then(({ json }) => ({
-      data: endpoint.getData(json.data),
+      data: endpoint.getData(json.data.records),
     }));
   },
 
   getMany: (resource, params) => {
     const endpoint = endpoints(GET_MANY, resource, params);
     return httpClient(endpoint.url).then(({ json }) => ({
-      data: endpoint.getData(json.data),
+      data: endpoint.getData(json.data.records),
     }));
   },
 
   getManyReference: (resource, params) => {
     const endpoint = endpoints(GET_MANY_REFERENCE, resource, params);
     return httpClient(endpoint.url).then(({ json }) => ({
-      data: endpoint.getData(json.data),
-      total: json.data.length,
+      data: endpoint.getData(json.data.records),
+      total: json.data.records.length,
     }));
   },
 
@@ -55,7 +57,7 @@ export default {
     const endpoint = endpoints(UPDATE, resource, params);
     if (token === params.id || token === params.msAdminId) {
       return httpClient(endpoint.url, endpoint.options).then(({ json }) => ({
-        data: endpoint.getData(json.data),
+        data: endpoint.getData(json.data.records),
       }));
     }
     return Promise.reject();
@@ -69,7 +71,7 @@ export default {
       method: "POST",
       body: JSON.stringify(params.data),
     }).then(({ json }) => ({
-      data: endpoint.getData(json.data),
+      data: endpoint.getData(json.data.records),
     }));
   },
 
@@ -78,7 +80,7 @@ export default {
     httpClient(endpoint.url, {
       method: "DELETE",
     }).then(({ json }) => ({
-      data: endpoint.getData(json.data),
+      data: endpoint.getData(json.data.records),
     }));
   },
 
