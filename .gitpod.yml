@@ -2,11 +2,18 @@ tasks:
   - init: npm install
     prebuild: npm test && npm run test:e2e
     command: npm start
+  - command: echo DANGEROUSLY_DISABLE_HOST_CHECK=true >> .env && exit
 ports:
   - port: 3000
     onOpen: open-preview
 github:
   prebuilds:
+    master: true
     branches: true
+    pullRequests: true
     pullRequestsFromForks: true
+    addCheck: true
     addComment: true
+    addBadge: false
+    addLabel: false
+    
