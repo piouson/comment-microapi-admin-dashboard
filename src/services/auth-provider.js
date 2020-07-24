@@ -24,7 +24,7 @@ export default {
     return Promise.resolve();
   },
   checkError: (error) => {
-    if (error.status === 401 || error.status === 403) {
+    if (error && (error.status === 401 || error.status === 403)) {
       localStorage.removeItem("systemToken");
       return Promise.reject();
     }

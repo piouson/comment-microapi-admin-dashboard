@@ -1,13 +1,16 @@
 import { fetchUtils } from "react-admin";
 import endpoints from "../utils/endpoints";
+import { stringify } from "querystring";
+import getPaginateQuery from "../utils/pagination";
 import {
   GET_LIST,
   GET_ONE,
+  GET_MANY,
+  GET_MANY_REFERENCE,
   CREATE,
   UPDATE,
   DELETE,
-  GET_MANY,
-  GET_MANY_REFERENCE,
+  DELETE_MANY,
 } from "react-admin";
 
 const httpClient = (url, options = {}) => {
@@ -21,11 +24,14 @@ const httpClient = (url, options = {}) => {
 
 export default {
   getList: (resource, params) => {
+    const query = getPaginateQuery(params);
     const endpoint = endpoints(GET_LIST, resource, params);
-    return httpClient(endpoint.url).then(({ json }) => ({
-      data: endpoint.getData(json.data.records),
-      total: json.data.records.length,
-    }));
+    return httpClient(`${endpoint.url}?${stringify(query)}`).then(
+      ({ json }) => ({
+        data: endpoint.getData(json.data),
+        total: json.data.pageInfo.totalRecord,
+      })
+    );
   },
 
   getOne: (resource, params) => {
@@ -38,16 +44,19 @@ export default {
   getMany: (resource, params) => {
     const endpoint = endpoints(GET_MANY, resource, params);
     return httpClient(endpoint.url).then(({ json }) => ({
-      data: endpoint.getData(json.data.records),
+      data: endpoint.getData(json.data),
     }));
   },
 
   getManyReference: (resource, params) => {
+    const query = getPaginateQuery(params);
     const endpoint = endpoints(GET_MANY_REFERENCE, resource, params);
-    return httpClient(endpoint.url).then(({ json }) => ({
-      data: endpoint.getData(json.data.records),
-      total: json.data.records.length,
-    }));
+    return httpClient(`${endpoint.url}?${stringify(query)}`).then(
+      ({ json }) => ({
+        data: endpoint.getData(json.data),
+        total: json.data.pageInfo.totalRecord,
+      })
+    );
   },
 
   update: (resource, params) => {
@@ -82,5 +91,15 @@ export default {
     }));
   },
 
-  deleteMany: (resource, params) => Promise.reject(),
+  deleteMany: (resource, params) => {
+    const endpoint = endpoints(DELETE_MANY, resource, params);
+    let result = [];
+    return Promise.all(
+      endpoint.urls.map((url) =>
+        httpClient(url, {
+          method: "DELETE",
+        }).then(({ json }) => result.push(endpoint.getData(json.data)))
+      )
+    ).then(() => ({ data: result }));
+  },
 };
