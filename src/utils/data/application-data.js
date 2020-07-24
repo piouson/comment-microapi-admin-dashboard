@@ -13,9 +13,9 @@ const convertData = (data) => {
 };
 
 export default (data) => {
-  if (data.length && data[0].applicationId && data.constructor === Array) {
-    return data.map((item) => convertData(item));
-  } else if (data.applicationId && data === Object(data)) {
+  if (data.records && Array.isArray(data.records)) {
+    return data.records.map((item) => convertData(item));
+  } else if (data.applicationId) {
     return convertData(data);
   }
   return data;
