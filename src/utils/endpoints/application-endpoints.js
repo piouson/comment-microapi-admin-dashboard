@@ -21,9 +21,13 @@ export default (type, params) => {
       };
     case GET_ONE:
     case DELETE:
-    case DELETE_MANY:
       return {
         url: `${apiUrl}/msadmins/applications/${params.id}`,
+        getData: getData,
+      };
+    case DELETE_MANY:
+      return {
+        urls: params.ids.map((id) => `${apiUrl}/msadmins/applications/${id}`),
         getData: getData,
       };
     default:

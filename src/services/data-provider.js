@@ -93,7 +93,13 @@ export default {
 
   deleteMany: (resource, params) => {
     const endpoint = endpoints(DELETE_MANY, resource, params);
-    console.log("ENDPOINT", endpoint, params.data);
-    return Promise.reject();
+    let result = [];
+    return Promise.all(
+      endpoint.urls.map((url) =>
+        httpClient(url, {
+          method: "DELETE",
+        }).then(({ json }) => result.push(endpoint.getData(json.data)))
+      )
+    ).then(() => ({ data: result }));
   },
 };

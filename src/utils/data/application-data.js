@@ -1,8 +1,16 @@
-const convertData = (data) => ({
-  id: data.applicationId,
-  orgId: data.organizationId._id,
-  ...data,
-});
+const convertData = (data) => {
+  if (data.organizationId) {
+    return {
+      id: data.applicationId,
+      orgId: data.organizationId._id,
+      ...data,
+    };
+  }
+  return {
+    id: data.applicationId,
+    ...data,
+  };
+};
 
 export default (data) => {
   if (data.length && data[0].applicationId && data.constructor === Array) {
