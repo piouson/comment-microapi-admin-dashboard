@@ -1,6 +1,13 @@
 import React from "react";
 import { useMediaQuery } from "@material-ui/core";
-import { List, Datagrid, TextField, SimpleList, Pagination } from "react-admin";
+import {
+  List,
+  Datagrid,
+  TextField,
+  SimpleList,
+  Pagination,
+  ReferenceField,
+} from "react-admin";
 
 const ApplicationPagination = (props) => (
   <Pagination rowsPerPageOptions={[10, 25, 50]} {...props} />
@@ -25,9 +32,14 @@ const ApplicationList = (props) => {
       ) : (
         <Datagrid rowClick="show">
           <TextField source="id" />
-          <TextField source="applicationName" />
-          <TextField source="orgId" />
-          <TextField source="organizationName" />
+          <TextField label="Name" source="applicationName" />
+          <ReferenceField
+            label="Organization"
+            source="orgId"
+            reference="Organizations"
+          >
+            <TextField source="organizationName" />
+          </ReferenceField>
         </Datagrid>
       )}
     </List>
