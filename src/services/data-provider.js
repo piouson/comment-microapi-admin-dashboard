@@ -23,8 +23,8 @@ export default {
   getList: (resource, params) => {
     const endpoint = endpoints(GET_LIST, resource, params);
     return httpClient(endpoint.url).then(({ json }) => ({
-      data: endpoint.getData(json.data),
-      total: json.data.length,
+      data: endpoint.getData(json.data.records),
+      total: json.data.records.length,
     }));
   },
 
@@ -38,15 +38,15 @@ export default {
   getMany: (resource, params) => {
     const endpoint = endpoints(GET_MANY, resource, params);
     return httpClient(endpoint.url).then(({ json }) => ({
-      data: endpoint.getData(json.data),
+      data: endpoint.getData(json.data.records),
     }));
   },
 
   getManyReference: (resource, params) => {
     const endpoint = endpoints(GET_MANY_REFERENCE, resource, params);
     return httpClient(endpoint.url).then(({ json }) => ({
-      data: endpoint.getData(json.data),
-      total: json.data.length,
+      data: endpoint.getData(json.data.records),
+      total: json.data.records.length,
     }));
   },
 
