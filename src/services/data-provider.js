@@ -31,7 +31,7 @@ export default {
   getOne: (resource, params) => {
     const endpoint = endpoints(GET_ONE, resource, params);
     return httpClient(endpoint.url).then(({ json }) => ({
-      data: endpoint.getData(json.data.records),
+      data: endpoint.getData(json.data),
     }));
   },
 
@@ -55,7 +55,7 @@ export default {
     const endpoint = endpoints(UPDATE, resource, params);
     if (token === params.id || token === params.msAdminId) {
       return httpClient(endpoint.url, endpoint.options).then(({ json }) => ({
-        data: endpoint.getData(json.data.records),
+        data: endpoint.getData(json.data),
       }));
     }
     return Promise.reject();
@@ -69,7 +69,7 @@ export default {
       method: "POST",
       body: JSON.stringify(params.data),
     }).then(({ json }) => ({
-      data: endpoint.getData(json.data.records),
+      data: endpoint.getData(json.data),
     }));
   },
 
@@ -78,7 +78,7 @@ export default {
     httpClient(endpoint.url, {
       method: "DELETE",
     }).then(({ json }) => ({
-      data: endpoint.getData(json.data.records),
+      data: endpoint.getData(json.data),
     }));
   },
 
