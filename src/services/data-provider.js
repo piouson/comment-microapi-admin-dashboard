@@ -22,12 +22,10 @@ const httpClient = (url, options = {}) => {
 export default {
   getList: (resource, params) => {
     const endpoint = endpoints(GET_LIST, resource, params);
-    return httpClient(endpoint.url).then(({ json }) => {
-      return {
-        data: endpoint.getData(json.data.records),
-        total: json.data.records.length,
-      };
-    });
+    return httpClient(endpoint.url).then(({ json }) => ({
+      data: endpoint.getData(json.data.records),
+      total: json.data.records.length,
+    }));
   },
 
   getOne: (resource, params) => {
