@@ -2,7 +2,7 @@ import React from "react";
 import { Show, SimpleShowLayout, TextField } from "react-admin";
 
 const AdminShow = (props) => (
-  <Show label="Show" {...props}>
+  <Show label="Show" title="" {...props}>
     <SimpleShowLayout>
       <TextField label="Full Name" source="fullname" />
       <TextField source="email" />
