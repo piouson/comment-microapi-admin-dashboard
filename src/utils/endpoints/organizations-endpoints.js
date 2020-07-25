@@ -1,11 +1,10 @@
-import getData from "../../utils/data/application-data";
+import getData from "../../utils/data/organizations-data";
 import {
   GET_ONE,
   GET_LIST,
   GET_MANY,
   GET_MANY_REFERENCE,
   DELETE,
-  DELETE_MANY,
 } from "react-admin";
 
 const apiUrl = "https://comments-microservice.herokuapp.com/v1";
@@ -15,12 +14,12 @@ export default (type, params) => {
     case GET_MANY:
     case GET_LIST:
       return {
-        url: `${apiUrl}/msadmins/applications`,
+        url: `${apiUrl}/msadmins/organizations`,
         getData: getData,
       };
     case GET_MANY_REFERENCE:
       return {
-        url: `${apiUrl}/msadmins/applications`,
+        url: `${apiUrl}/msadmins/organizations`,
         getData: (data) => {
           return getData(data, params.target, params.id);
         },
@@ -28,12 +27,7 @@ export default (type, params) => {
     case GET_ONE:
     case DELETE:
       return {
-        url: `${apiUrl}/msadmins/applications/${params.id}`,
-        getData: getData,
-      };
-    case DELETE_MANY:
-      return {
-        urls: params.ids.map((id) => `${apiUrl}/msadmins/applications/${id}`),
+        url: `${apiUrl}/msadmins/organizations/${params.id}`,
         getData: getData,
       };
     default:
