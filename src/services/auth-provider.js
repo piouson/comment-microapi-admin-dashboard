@@ -1,5 +1,6 @@
 const loginUrl =
   "https://comments-microservice.herokuapp.com/v1/msadmins/login";
+const profileUrl = "https://comments-microservice.herokuapp.com/v1/msadmins/me";
 
 export default {
   login: async ({ username, password }) => {
@@ -16,6 +17,16 @@ export default {
         return res.json();
       })
       .then(({ data }) => {
+        fetch(
+          new Request(profileUrl, {
+            headers: { Authorization: `Bearer ${data.systemToken}` },
+          })
+        )
+          .then((res) => res.json())
+          .then((json) => {
+            console.log("PROFILE", JSON.stringify(json.data));
+            localStorage.setItem("profile", JSON.stringify(json.data));
+          });
         localStorage.setItem("systemToken", data.systemToken);
       });
   },
