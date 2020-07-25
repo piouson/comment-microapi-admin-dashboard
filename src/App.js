@@ -6,10 +6,11 @@ import msadmins from "./components/msadmins";
 import organizations from "./components/organizations";
 import applications from "./components/applications";
 import settings from "./components/settings";
+import theme from "./theme";
 
 function App() {
   return (
-    <Admin dashboard={Dashboard} {...services}>
+    <Admin theme={theme} dashboard={Dashboard} {...services}>
       <Resource name="Admins" {...msadmins} />
       <Resource name="Organizations" {...organizations} />
       <Resource name="Applications" {...applications} />
