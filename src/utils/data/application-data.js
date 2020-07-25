@@ -1,22 +1,31 @@
-const convertData = (data) => {
-  if (data.organizationId) {
+const getApplicationsData = (data, target, id) => {
+  let mappedData = data;
+
+  if (Array.isArray(data.records) && data.records[0].applicationId) {
+    mappedData = data.records.map(mapApplicationIdToId);
+
+    if (target && id) {
+      mappedData = mappedData.filter((item) => {
+        return item[target]._id === id;
+      });
+    }
+  }
+
+  return mappedData;
+};
+
+const mapApplicationIdToId = (application) => {
+  if (application.organizationId) {
     return {
-      id: data.applicationId,
-      orgId: data.organizationId._id,
-      ...data,
+      id: application.applicationId,
+      orgId: application.organizationId._id,
+      ...application,
     };
   }
   return {
-    id: data.applicationId,
-    ...data,
+    id: application.applicationId,
+    ...application,
   };
 };
 
-export default (data) => {
-  if (data.records && Array.isArray(data.records)) {
-    return data.records.map((item) => convertData(item));
-  } else if (data.applicationId) {
-    return convertData(data);
-  }
-  return data;
-};
+export default getApplicationsData;

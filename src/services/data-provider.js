@@ -49,14 +49,11 @@ export default {
   },
 
   getManyReference: (resource, params) => {
-    const query = getPaginateQuery(params);
     const endpoint = endpoints(GET_MANY_REFERENCE, resource, params);
-    return httpClient(`${endpoint.url}?${stringify(query)}`).then(
-      ({ json }) => ({
-        data: endpoint.getData(json.data),
-        total: json.data.pageInfo.totalRecord,
-      })
-    );
+    return httpClient(endpoint.url).then(({ json }) => ({
+      data: endpoint.getData(json.data, endpoint.target, endpoint.targetId),
+      total: json.data.pageInfo.totalRecord,
+    }));
   },
 
   update: (resource, params) => {
