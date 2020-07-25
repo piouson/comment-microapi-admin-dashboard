@@ -6,11 +6,9 @@ export default () => {
   const dataProvider = useDataProvider();
 
   useEffect(() => {
-    const fetchOrgList = async () => {
-      const { total } = await dataProvider.getList("Organizations");
-      setOrganizationCount(total);
-    };
-    fetchOrgList();
+    dataProvider
+      .getList("Organizations")
+      .then(({ total }) => setOrganizationCount(total));
   }, [organizationCount, dataProvider]);
 
   return [organizationCount];

@@ -6,11 +6,7 @@ export default () => {
   const dataProvider = useDataProvider();
 
   useEffect(() => {
-    const fetchAdminList = async () => {
-      const { total } = await dataProvider.getList("Admins");
-      setAdminCount(total);
-    };
-    fetchAdminList();
+    dataProvider.getList("Admins").then(({ total }) => setAdminCount(total));
   }, [adminCount, dataProvider]);
 
   return [adminCount];
