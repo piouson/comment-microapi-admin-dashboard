@@ -30,8 +30,8 @@ const OrganizationShow = (props) => {
     <Show label="Show" actions={<OrganizationShowActions />} {...props}>
       <TabbedShowLayout>
         <Tab label="details">
+          <TextField label="Organization Name" source="organizationName" />
           <TextField label="ID" source="organizationId" />
-          <TextField source="organizationName" />
         </Tab>
         <Tab label="applications">
           <ReferenceManyField

@@ -1,12 +1,33 @@
 import React from "react";
 import { useMediaQuery } from "@material-ui/core";
-import { List, Datagrid, TextField, EmailField, SimpleList } from "react-admin";
+import {
+  List,
+  Datagrid,
+  TextField,
+  EmailField,
+  SimpleList,
+  TopToolbar,
+  ExportButton,
+  CreateButton,
+} from "react-admin";
+
+const AdminListActions = ({ basePath, data, resource }) => (
+  <TopToolbar>
+    <CreateButton basePath={basePath} />
+    <ExportButton basePath={basePath} record={data} resource={resource} />
+  </TopToolbar>
+);
 
 const AdminList = (props) => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   return (
-    <List label="Admins" title="Admins" {...props}>
+    <List
+      label="Admins"
+      title="Admins"
+      actions={<AdminListActions />}
+      {...props}
+    >
       {isSmall ? (
         <SimpleList
           linkType="show"

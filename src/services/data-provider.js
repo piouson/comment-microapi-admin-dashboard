@@ -29,7 +29,9 @@ export default {
     return httpClient(`${endpoint.url}?${stringify(query)}`).then(
       ({ json }) => ({
         data: endpoint.getData(json.data),
-        total: json.data.pageInfo.totalRecord,
+        total: json.data.pageInfo
+          ? json.data.pageInfo.totalRecord
+          : json.data.length,
       })
     );
   },
@@ -52,7 +54,9 @@ export default {
     const endpoint = endpoints(GET_MANY_REFERENCE, resource, params);
     return httpClient(endpoint.url).then(({ json }) => ({
       data: endpoint.getData(json.data, endpoint.target, endpoint.targetId),
-      total: json.data.pageInfo.totalRecord,
+      total: json.data.pageInfo
+        ? json.data.pageInfo.totalRecord
+        : json.data.length,
     }));
   },
 
@@ -81,7 +85,7 @@ export default {
 
   delete: (resource, params) => {
     const endpoint = endpoints(DELETE, resource, params);
-    httpClient(endpoint.url, {
+    return httpClient(endpoint.url, {
       method: "DELETE",
     }).then(({ json }) => ({
       data: endpoint.getData(json.data),

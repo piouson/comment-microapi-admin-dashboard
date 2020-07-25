@@ -6,11 +6,9 @@ export default () => {
   const dataProvider = useDataProvider();
 
   useEffect(() => {
-    const fetchAppList = async () => {
-      const { total } = await dataProvider.getList("Applications");
-      setApplicationCount(total);
-    };
-    fetchAppList();
+    dataProvider
+      .getList("Applications")
+      .then(({ total }) => setApplicationCount(total));
   }, [applicationCount, dataProvider]);
 
   return [applicationCount];
