@@ -1,10 +1,15 @@
 import React from "react";
-import { Card, CardContent, CardHeader } from "@material-ui/core";
+import { Card, CardHeader } from "@material-ui/core";
+import Admins from "./Admins";
+import Applications from "./Applications";
+import Organizations from "./Organizations";
 
 const Dashboard = () => (
   <Card>
     <CardHeader title="Welcome to Admin Dashboard" />
-    <CardContent>This is the dashboard area</CardContent>
+    <Admins />
+    <Applications />
+    <Organizations />
   </Card>
 );
 
