@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Card, Typography, Grid } from "@material-ui/core";
+import { Box, Card, Typography } from "@material-ui/core";
 import AppsIcon from "@material-ui/icons/Apps";
 import { Link } from "react-router-dom";
 import useApplicationProvider from "../../hooks/useApplicationProvider";
