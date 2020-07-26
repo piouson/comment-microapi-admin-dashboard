@@ -1,14 +1,34 @@
 import React from "react";
-import { Show, SimpleShowLayout, TextField } from "react-admin";
+import {
+  Show,
+  SimpleShowLayout,
+  TextField,
+  ShowController,
+  ShowView,
+  BooleanField,
+} from "react-admin";
 
-const SettingShow = (props) => (
-  <Show label="Settings" title="Settings" {...props}>
-    <SimpleShowLayout>
-      <TextField label="Requests per Minute (max)" source="maxRequestsPerMin" />
-      <TextField label="Items per Page (default)" source="maxItemsPerPage" />
-      <TextField label="Items per Page (max)" source="defaultItemsPerPage" />
-    </SimpleShowLayout>
-  </Show>
-);
+const SettingShow = (props) => {
+  return (
+    <Show title="Settings" {...props}>
+      <ShowController {...props}>
+        {(controllerProps) => (
+          <ShowView title="Settings" {...controllerProps}>
+            <SimpleShowLayout>
+              {controllerProps.record &&
+                Object.keys(controllerProps.record).map((key) =>
+                  /true|false/.test(controllerProps.record[key]) ? (
+                    <BooleanField key={key} source={key} />
+                  ) : (
+                    <TextField key={key} source={key} />
+                  )
+                )}
+            </SimpleShowLayout>
+          </ShowView>
+        )}
+      </ShowController>
+    </Show>
+  );
+};
 
 export default SettingShow;
