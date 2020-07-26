@@ -1,5 +1,18 @@
 import React from "react";
-import { Edit, TextInput, SimpleForm, required } from "react-admin";
+import {
+  Edit,
+  TextInput,
+  SimpleForm,
+  Toolbar,
+  SaveButton,
+  required,
+} from "react-admin";
+
+const CustomToolbar = (props) => (
+  <Toolbar {...props}>
+    <SaveButton />
+  </Toolbar>
+);
 
 const ProfileEdit = ({ staticContext, ...props }) => {
   return (
@@ -11,10 +24,15 @@ const ProfileEdit = ({ staticContext, ...props }) => {
       title="My Profile"
       {...props}
     >
-      <SimpleForm>
-        <TextInput source="fullname" validate={required()} />
-        <TextInput source="email" validate={required()} />
-        <TextInput source="role" validate={required()} />
+      <SimpleForm toolbar={<CustomToolbar />} warnWhenUnsavedChanges>
+        <TextInput
+          disabled
+          label="Full Name"
+          source="fullname"
+          validate={required()}
+        />
+        <TextInput disabled source="email" />
+        <TextInput disabled source="role" />
       </SimpleForm>
     </Edit>
   );
