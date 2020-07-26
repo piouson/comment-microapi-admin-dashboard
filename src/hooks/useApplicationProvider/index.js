@@ -8,7 +8,7 @@ export default () => {
   useEffect(() => {
     dataProvider
       .getList("Applications")
-      .then(({ total }) => setApplicationCount(total));
+      .then((data) => setApplicationCount(data ? data.total : 0));
   }, [applicationCount, dataProvider]);
 
   return [applicationCount];

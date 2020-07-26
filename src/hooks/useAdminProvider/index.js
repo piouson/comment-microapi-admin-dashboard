@@ -6,7 +6,9 @@ export default () => {
   const dataProvider = useDataProvider();
 
   useEffect(() => {
-    dataProvider.getList("Admins").then(({ total }) => setAdminCount(total));
+    dataProvider
+      .getList("Admins")
+      .then((data) => setAdminCount(data ? data.total : 0));
   }, [adminCount, dataProvider]);
 
   return [adminCount];
