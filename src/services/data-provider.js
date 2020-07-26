@@ -2,6 +2,7 @@ import { fetchUtils } from "react-admin";
 import endpoints from "../utils/endpoints";
 import { stringify } from "querystring";
 import getPaginateQuery from "../utils/pagination";
+import handleProfileData from "../utils/data/profile-data";
 import {
   GET_LIST,
   GET_ONE,
@@ -37,6 +38,9 @@ export default {
   },
 
   getOne: (resource, params) => {
+    if (resource === "profile") {
+      return handleProfileData(GET_ONE, params);
+    }
     const endpoint = endpoints(GET_ONE, resource, params);
     return httpClient(endpoint.url).then(({ json }) => ({
       data: endpoint.getData(json.data),
@@ -61,17 +65,16 @@ export default {
   },
 
   update: (resource, params) => {
-    const token = localStorage.getItem("systemToken");
     const endpoint = endpoints(UPDATE, resource, params);
-    if (token === params.id || token === params.msAdminId) {
-      return httpClient(endpoint.url, endpoint.options).then(({ json }) => ({
-        data: endpoint.getData(json.data),
-      }));
-    }
-    return Promise.reject();
+    return httpClient(endpoint.url, {
+      method: "PATCH",
+      body: JSON.stringify(params.data),
+    }).then(({ json }) => ({
+      data: endpoint.getData(json.data),
+    }));
   },
 
-  updateMany: (resource, params) => Promise.reject(),
+  updateMany: () => Promise.reject(),
 
   create: (resource, params) => {
     const endpoint = endpoints(CREATE, resource, params);
