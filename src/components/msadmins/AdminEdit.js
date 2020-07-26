@@ -10,7 +10,6 @@ const CustomToolbar = (props) => (
 const AdminEdit = (props) => (
   <Edit {...props}>
     <SimpleForm toolbar={<CustomToolbar />}>
-      <TextInput disabled source="id" />
       <TextInput label="Full Name" source="fullname" />
       <TextInput disabled source="email" />
       <TextInput disabled source="role" />

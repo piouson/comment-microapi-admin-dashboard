@@ -20,12 +20,12 @@ const OrganizationList = (props) => {
         <SimpleList
           linkType="show"
           primaryText={(record) => record.organizationName}
-          secondaryText={(record) => `${record.organizationId}`}
+          secondaryText={(record) => `${record.organizationEmail}`}
         />
       ) : (
         <Datagrid rowClick="show">
           <TextField label="Name" source="organizationName" />
-          <TextField label="ID" source="id" />
+          <TextField label="Email" source="organizationEmail" />
         </Datagrid>
       )}
     </List>
