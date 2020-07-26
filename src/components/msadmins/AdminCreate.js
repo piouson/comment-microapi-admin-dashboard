@@ -6,8 +6,11 @@ import {
   PasswordInput,
   required,
 } from "react-admin";
+import { parse } from "querystring";
 
 const AdminCreate = (props) => {
+  const data = parse(props.location.search);
+  console.log("AdminCreate", data);
   return (
     <Create label="Create" title="Create an Admin" {...props}>
       <SimpleForm redirect="show">
