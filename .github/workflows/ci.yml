@@ -19,13 +19,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
       - run: npm ci
       - run: npm test
       - run: npm run test:e2e
+
       - name: Coveralls Parallel
         uses: coverallsapp/github-action@master
         with:
