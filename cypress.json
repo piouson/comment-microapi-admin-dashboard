@@ -2,7 +2,7 @@
   "baseUrl": "http://localhost:3000",
   "integrationFolder": "cypress/integration",
   "screenshotsFolder": "cypress/screenshots",
-  "supportFile": false,
-  "pluginsFile": false,
+  "supportFile": "cypress/support",
+  "pluginsFile": "cypress/plugins",
   "video": false
 }
