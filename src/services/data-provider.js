@@ -38,7 +38,6 @@ export default {
   },
 
   getOne: (resource, params) => {
-    console.log("GET_ONE", resource);
     if (resource === "profile") {
       return handleProfileData(GET_ONE, params);
     }
@@ -75,7 +74,7 @@ export default {
     }));
   },
 
-  updateMany: (resource, params) => Promise.reject(),
+  updateMany: () => Promise.reject(),
 
   create: (resource, params) => {
     const endpoint = endpoints(CREATE, resource, params);

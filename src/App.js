@@ -17,7 +17,7 @@ function App() {
       dashboard={Dashboard}
       layout={CustomLayout}
       customRoutes={[
-        <Route key="profile" path="/profile" component={profile.edit} />,
+        <Route key="profile" path="/profile" component={profile.show} />,
       ]}
       {...services}
     >
@@ -26,7 +26,7 @@ function App() {
       <Resource name="Applications" {...applications} />
       <Resource name="Plans" {...plans} />
       <Resource name="Settings" {...settings} />
-      <Resource name="profile" {...profile} />
+      <Resource name="profile" />
     </Admin>
   );
 }

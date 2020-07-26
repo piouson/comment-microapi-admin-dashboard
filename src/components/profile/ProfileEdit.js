@@ -17,14 +17,18 @@ const CustomToolbar = (props) => (
 const ProfileEdit = ({ staticContext, ...props }) => {
   return (
     <Edit
-      id="profile"
+      id="edit"
       resource="profile"
-      basePath="/profile"
-      redirect={false}
+      basePath="/profile/edit"
+      redirect="show"
       title="My Profile"
       {...props}
     >
-      <SimpleForm toolbar={<CustomToolbar />} warnWhenUnsavedChanges>
+      <SimpleForm
+        redirect="show"
+        toolbar={<CustomToolbar />}
+        warnWhenUnsavedChanges
+      >
         <TextInput
           disabled
           label="Full Name"
