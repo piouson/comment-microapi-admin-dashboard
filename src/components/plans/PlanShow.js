@@ -21,7 +21,6 @@ const PlanShow = (props) => {
       <TabbedShowLayout>
         <Tab label="details">
           <TextField label="Name" source="planName" />
-          <TextField label="ID" source="id" />
         </Tab>
         <Tab label="logging">
           <BooleanField
