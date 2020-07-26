@@ -9,11 +9,13 @@ import applications from "./components/applications";
 import plans from "./components/plans";
 import settings from "./components/settings";
 import profile from "./components/profile";
+import CustomLayout from "./components/layout/CustomLayout";
 
 function App() {
   return (
     <Admin
       dashboard={Dashboard}
+      layout={CustomLayout}
       customRoutes={[
         <Route key="profile" path="/profile" component={profile.show} />,
       ]}
