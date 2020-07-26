@@ -18,7 +18,7 @@ const AdminShowActions = ({ basePath, data, resource }) => (
 const AdminShow = (props) => (
   <Show label="Show" title="" actions={<AdminShowActions />} {...props}>
     <SimpleShowLayout>
-      <TextField label="Full Name" source="fullname" />
+      <TextField label="Name" source="fullname" />
       <TextField source="email" />
       <TextField source="password" />
       <TextField source="role" />

@@ -33,7 +33,6 @@ const PlanList = (props) => {
       ) : (
         <Datagrid rowClick="show">
           <TextField label="Name" source="planName" />
-          <TextField label="ID" source="id" />
         </Datagrid>
       )}
     </List>

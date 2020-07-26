@@ -27,13 +27,10 @@ const ApplicationList = (props) => {
         <SimpleList
           linkType="show"
           primaryText={(record) => record.applicationName}
-          secondaryText={(record) => record.orgId}
-          tertiaryText={(record) => record.organizationName}
         />
       ) : (
         <Datagrid rowClick="show">
           <TextField label="Name" source="applicationName" />
-          <TextField label="ID" source="id" />
           <ReferenceField
             link="show"
             label="Organization"

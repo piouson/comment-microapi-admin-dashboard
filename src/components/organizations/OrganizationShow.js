@@ -5,6 +5,7 @@ import {
   TabbedShowLayout,
   Tab,
   TextField,
+  EmailField,
   ReferenceManyField,
   SimpleList,
   TopToolbar,
@@ -30,8 +31,8 @@ const OrganizationShow = (props) => {
     <Show label="Show" actions={<OrganizationShowActions />} {...props}>
       <TabbedShowLayout>
         <Tab label="details">
-          <TextField label="Organization Name" source="organizationName" />
-          <TextField label="ID" source="organizationId" />
+          <TextField label="Name" source="organizationName" />
+          <EmailField label="Email" source="organizationEmail" />
         </Tab>
         <Tab label="applications">
           <ReferenceManyField

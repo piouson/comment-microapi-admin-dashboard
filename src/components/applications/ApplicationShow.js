@@ -17,7 +17,6 @@ const ApplicationShowActions = ({ basePath, data, resource }) => (
 const ApplicationShow = (props) => (
   <Show label="Show" title="" actions={<ApplicationShowActions />} {...props}>
     <SimpleShowLayout>
-      <TextField source="id" />
       <TextField label="Name" source="applicationName" />
       <TextField label="Organization ID" source="orgId" />
       <ReferenceField
@@ -26,7 +25,7 @@ const ApplicationShow = (props) => (
         source="orgId"
         reference="Organizations"
       >
-        <TextField source="organizationName" />
+        <TextField label="Organization Name" source="organizationName" />
       </ReferenceField>
     </SimpleShowLayout>
   </Show>
