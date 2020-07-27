@@ -38,8 +38,8 @@ const OrganizationShow = (props) => {
           <ReferenceManyField
             link="show"
             label=""
-            reference="Applications"
-            target="organizationId"
+            reference="Organizations"
+            target="id"
           >
             <SimpleList
               className={classes.root}

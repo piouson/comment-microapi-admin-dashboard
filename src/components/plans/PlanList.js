@@ -1,21 +1,8 @@
 import React from "react";
 import { useMediaQuery } from "@material-ui/core";
-import {
-  List,
-  Datagrid,
-  TextField,
-  SimpleList,
-  TopToolbar,
-  CreateButton,
-  ExportButton,
-} from "react-admin";
-
-const PlanListActions = ({ basePath, data, resource }) => (
-  <TopToolbar>
-    <CreateButton basePath={basePath} />
-    <ExportButton basePath={basePath} record={data} resource={resource} />
-  </TopToolbar>
-);
+import { List, Datagrid, TextField, SimpleList } from "react-admin";
+import Pagination from "../pagination";
+import PlanFilter from "./PlanFilter";
 
 const PlanList = (props) => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
@@ -24,8 +11,8 @@ const PlanList = (props) => {
     <List
       label="Plans"
       title="Plans"
-      actions={<PlanListActions />}
-      pagination={null}
+      pagination={<Pagination />}
+      filters={<PlanFilter />}
       {...props}
     >
       {isSmall ? (

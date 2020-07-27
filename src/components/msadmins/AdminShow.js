@@ -5,12 +5,10 @@ import {
   TextField,
   TopToolbar,
   DeleteButton,
-  EditButton,
 } from "react-admin";
 
 const AdminShowActions = ({ basePath, data, resource }) => (
   <TopToolbar>
-    <EditButton basePath={basePath} record={data} />
     <DeleteButton basePath={basePath} record={data} resource={resource} />
   </TopToolbar>
 );

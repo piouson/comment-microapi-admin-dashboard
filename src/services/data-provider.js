@@ -1,7 +1,7 @@
 import { fetchUtils } from "react-admin";
 import endpoints from "../utils/endpoints";
 import { stringify } from "querystring";
-import getPaginateQuery from "../utils/pagination";
+import getPaginateQuery, { filter } from "../utils/pagination";
 import handleProfileData from "../utils/data/profile-data";
 import {
   GET_LIST,
@@ -29,7 +29,7 @@ export default {
     const endpoint = endpoints(GET_LIST, resource, params);
     return httpClient(`${endpoint.url}?${stringify(query)}`).then(
       ({ json }) => ({
-        data: endpoint.getData(json.data),
+        data: filter(endpoint.getData(json.data), params),
         total: json.data.pageInfo
           ? json.data.pageInfo.totalRecord
           : json.data.length,
@@ -56,12 +56,20 @@ export default {
 
   getManyReference: (resource, params) => {
     const endpoint = endpoints(GET_MANY_REFERENCE, resource, params);
-    return httpClient(endpoint.url).then(({ json }) => ({
-      data: endpoint.getData(json.data, endpoint.target, endpoint.targetId),
-      total: json.data.pageInfo
-        ? json.data.pageInfo.totalRecord
-        : json.data.length,
-    }));
+    console.log("REFERENCE", params);
+    const query = {
+      limit: 50,
+      sort: "ASC",
+      page: 1,
+    };
+    return httpClient(`${endpoint.url}?${stringify(query)}`).then(
+      ({ json }) => ({
+        data: endpoint.getData(json.data, endpoint.target, endpoint.targetId),
+        total: json.data.pageInfo
+          ? json.data.pageInfo.totalRecord
+          : json.data.length,
+      })
+    );
   },
 
   update: (resource, params) => {

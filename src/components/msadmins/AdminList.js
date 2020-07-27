@@ -1,22 +1,8 @@
 import React from "react";
 import { useMediaQuery } from "@material-ui/core";
-import {
-  List,
-  Datagrid,
-  TextField,
-  EmailField,
-  SimpleList,
-  TopToolbar,
-  ExportButton,
-  CreateButton,
-} from "react-admin";
-
-const AdminListActions = ({ basePath, data, resource }) => (
-  <TopToolbar>
-    <CreateButton basePath={basePath} />
-    <ExportButton basePath={basePath} record={data} resource={resource} />
-  </TopToolbar>
-);
+import { List, Datagrid, TextField, EmailField, SimpleList } from "react-admin";
+import Pagination from "../pagination";
+import AdminFilter from "./AdminFilter";
 
 const AdminList = (props) => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
@@ -25,7 +11,8 @@ const AdminList = (props) => {
     <List
       label="Admins"
       title="Admins"
-      actions={<AdminListActions />}
+      pagination={<Pagination />}
+      filters={<AdminFilter />}
       {...props}
     >
       {isSmall ? (
@@ -36,7 +23,7 @@ const AdminList = (props) => {
           tertiaryText={(record) => record.role}
         />
       ) : (
-        <Datagrid rowClick="show" isRowSelectable={(record) => false}>
+        <Datagrid rowClick="show">
           <TextField label="Name" source="fullname" />
           <EmailField source="email" />
           <TextField source="role" />

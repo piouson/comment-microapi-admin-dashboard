@@ -19,10 +19,8 @@ export default (type, params) => {
       };
     case GET_MANY_REFERENCE:
       return {
-        url: `${apiUrl}/msadmins/organizations`,
-        getData: (data) => {
-          return getData(data, params.target, params.id);
-        },
+        url: `${apiUrl}/msadmins/organizations/${params.id}/applications`,
+        getData: getData,
       };
     case GET_ONE:
     case DELETE:

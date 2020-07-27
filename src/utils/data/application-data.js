@@ -1,14 +1,8 @@
-const getApplicationsData = (data, target, id) => {
+const getApplicationsData = (data) => {
   let mappedData = data;
 
   if (Array.isArray(data.records) && data.records[0].applicationId) {
     mappedData = data.records.map(mapApplicationIdToId);
-
-    if (target && id) {
-      mappedData = mappedData.filter((item) => {
-        return item[target]._id === id;
-      });
-    }
   }
 
   return mappedData;

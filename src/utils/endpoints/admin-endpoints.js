@@ -6,7 +6,7 @@ import {
   UPDATE,
   DELETE,
   GET_MANY,
-  GET_MANY_REFERENCE,
+  DELETE_MANY,
 } from "react-admin";
 
 const apiUrl = "https://comments-microservice.herokuapp.com/v1";
@@ -24,11 +24,6 @@ export default (type, params) => {
         getData: getData,
       };
     case GET_MANY:
-      return {
-        url: `${apiUrl}/msadmins`,
-        getData: getData,
-      };
-    case GET_MANY_REFERENCE:
       return {
         url: `${apiUrl}/msadmins`,
         getData: getData,
@@ -55,6 +50,11 @@ export default (type, params) => {
       return {
         url: `${apiUrl}/msadmins/${params.id}`,
         options: { method: "DELETE" },
+        getData: getData,
+      };
+    case DELETE_MANY:
+      return {
+        urls: params.ids.map((id) => `${apiUrl}/msadmins/${id}`),
         getData: getData,
       };
     default:
