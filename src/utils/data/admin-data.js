@@ -1,5 +1,5 @@
 export default (data) => {
-  if (data.records && Array.isArray(data.records)) {
+  if (Array.isArray(data.records)) {
     const profile = localStorage.getItem("profile");
     const currentUserId = JSON.parse(profile).msAdminId;
     return data.records
